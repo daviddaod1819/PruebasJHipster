@@ -1,0 +1,22 @@
+{
+  "pruebasJHipsterApp": {
+    "userm": {
+      "home": {
+        "title": "Userms",
+        "createLabel": "Créer un nouveau Userm",
+        "createOrEditLabel": "Créer ou éditer un Userm",
+        "notFound": "Aucun Userm trouvé"
+      },
+      "created": "Un nouveau Userm a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Userm avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Userm avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Userm {{ id }} ?"
+      },
+      "detail": {
+        "title": "Userm"
+      },
+      "userInfo": "User Info"
+    }
+  }
+}
