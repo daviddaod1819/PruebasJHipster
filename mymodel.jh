@@ -1,0 +1,35 @@
+
+application {
+  config {
+    baseName PruebasJHipster,
+    applicationType monolith,
+    packageName com.mycompany.myapp,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity UserInfo {
+ sex Boolean
+ birthDate Instant required
+ country String minlength(1) maxlength(50)
+ town String minlength(1) maxlength(50)
+ postCode String minlength(5) maxlength(5)
+}
+
+entity Space {
+rooms Integer
+meters Integer
+price Integer
+details String
+}
+
+relationship OneToMany {
+  UserInfo{spaces} to Space{userInfo}
+}
+
+service all with serviceImpl
+paginate all with pagination
+    
