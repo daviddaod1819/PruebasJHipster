@@ -1,0 +1,41 @@
+{
+  "name": "Space",
+  "fields": [
+    {
+      "fieldName": "rooms",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "meters",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "details",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "userInfo",
+      "otherEntityRelationshipName": "spaces",
+      "relationshipName": "userInfo",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201116214531",
+  "entityTableName": "space",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["PruebasJHipster"]
+}

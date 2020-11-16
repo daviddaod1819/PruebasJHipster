@@ -1,0 +1,97 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-user-info-heading" jhiTranslate="pruebasJHipsterApp.userInfo.home.createOrEditLabel">Create or edit a User Info</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="pruebasJHipsterApp.userInfo.sex" for="field_sex">Sex</label>
+                    <input type="checkbox" class="form-control" name="sex" id="field_sex"
+                           formControlName="sex"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="pruebasJHipsterApp.userInfo.birthDate" for="field_birthDate">Birth Date</label>
+                    <div class="d-flex">
+                        <input id="field_birthDate" type="datetime-local" class="form-control" name="birthDate" formControlName="birthDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('birthDate')!.invalid && (editForm.get('birthDate')!.dirty || editForm.get('birthDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('birthDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('birthDate')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="pruebasJHipsterApp.userInfo.country" for="field_country">Country</label>
+                    <input type="text" class="form-control" name="country" id="field_country"
+                           formControlName="country"/>
+                    <div *ngIf="editForm.get('country')!.invalid && (editForm.get('country')!.dirty || editForm.get('country')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('country')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 1 }">
+                        This field is required to be at least 1 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('country')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="pruebasJHipsterApp.userInfo.town" for="field_town">Town</label>
+                    <input type="text" class="form-control" name="town" id="field_town"
+                           formControlName="town"/>
+                    <div *ngIf="editForm.get('town')!.invalid && (editForm.get('town')!.dirty || editForm.get('town')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('town')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 1 }">
+                        This field is required to be at least 1 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('town')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="pruebasJHipsterApp.userInfo.postCode" for="field_postCode">Post Code</label>
+                    <input type="text" class="form-control" name="postCode" id="field_postCode"
+                           formControlName="postCode"/>
+                    <div *ngIf="editForm.get('postCode')!.invalid && (editForm.get('postCode')!.dirty || editForm.get('postCode')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('postCode')?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 5 }">
+                        This field is required to be at least 5 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('postCode')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 5 }">
+                        This field cannot be longer than 5 characters.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -47,11 +47,6 @@ spring:
       hibernate.generate_statistics: false
       hibernate.hbm2ddl.auto: validate
       hibernate.jdbc.time_zone: UTC
-  data:
-    elasticsearch:
-      properties:
-        path:
-          home: target/elasticsearch
   liquibase:
     contexts: test
   mail:
@@ -60,6 +55,10 @@ spring:
     allow-bean-definition-overriding: true
   messages:
     basename: i18n/messages
+  security:
+    user:
+      name: test
+      password: test
   task:
     execution:
       thread-name-prefix: pruebas-j-hipster-task-
@@ -95,9 +94,6 @@ jhipster:
       host: localhost
       port: 5000
       queue-size: 512
-  mail:
-    from: test@localhost
-    base-url: http://127.0.0.1:8080
   security:
     authentication:
       jwt:
