@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userInfo">
+            <h2><span jhiTranslate="pruebasJHipsterApp.userInfo.detail.title">User Info</span> {{ userInfo.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="pruebasJHipsterApp.userInfo.sex">Sex</span></dt>
+                <dd>
+                    <span>{{ userInfo.sex }}</span>
+                </dd>
+                <dt><span jhiTranslate="pruebasJHipsterApp.userInfo.birthDate">Birth Date</span></dt>
+                <dd>
+                    <span>{{ userInfo.birthDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="pruebasJHipsterApp.userInfo.country">Country</span></dt>
+                <dd>
+                    <span>{{ userInfo.country }}</span>
+                </dd>
+                <dt><span jhiTranslate="pruebasJHipsterApp.userInfo.town">Town</span></dt>
+                <dd>
+                    <span>{{ userInfo.town }}</span>
+                </dd>
+                <dt><span jhiTranslate="pruebasJHipsterApp.userInfo.postCode">Post Code</span></dt>
+                <dd>
+                    <span>{{ userInfo.postCode }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-info', userInfo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

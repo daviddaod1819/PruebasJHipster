@@ -1,16 +1,12 @@
 package com.mycompany.myapp.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.mycompany.myapp.PruebasJHipsterApp;
 import com.mycompany.myapp.config.Constants;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.UserRepository;
-import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.service.dto.UserDTO;
 import io.github.jhipster.security.RandomUtil;
 import java.time.Instant;
@@ -53,14 +49,6 @@ public class UserServiceIT {
 
     @Autowired
     private UserService userService;
-
-    /**
-     * This repository is mocked in the com.mycompany.myapp.repository.search test package.
-     *
-     * @see com.mycompany.myapp.repository.search.UserSearchRepositoryMockConfiguration
-     */
-    @Autowired
-    private UserSearchRepository mockUserSearchRepository;
 
     @Autowired
     private AuditingHandler auditingHandler;
@@ -176,9 +164,6 @@ public class UserServiceIT {
         userService.removeNotActivatedUsers();
         users = userRepository.findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(threeDaysAgo);
         assertThat(users).isEmpty();
-
-        // Verify Elasticsearch mock
-        verify(mockUserSearchRepository, times(1)).delete(user);
     }
 
     @Test
@@ -196,9 +181,6 @@ public class UserServiceIT {
         userService.removeNotActivatedUsers();
         Optional<User> maybeDbUser = userRepository.findById(dbUser.getId());
         assertThat(maybeDbUser).contains(dbUser);
-
-        // Verify Elasticsearch mock
-        verify(mockUserSearchRepository, never()).delete(user);
     }
 
     @Test

@@ -1,0 +1,26 @@
+{
+  "pruebasJHipsterApp": {
+    "space": {
+      "home": {
+        "title": "Spaces",
+        "createLabel": "Créer un nouveau Space",
+        "createOrEditLabel": "Créer ou éditer un Space",
+        "notFound": "Aucun Space trouvé"
+      },
+      "created": "Un nouveau Space a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Space avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Space avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Space {{ id }} ?"
+      },
+      "detail": {
+        "title": "Space"
+      },
+      "rooms": "Rooms",
+      "meters": "Meters",
+      "price": "Price",
+      "details": "Details",
+      "userInfo": "User Info"
+    }
+  }
+}

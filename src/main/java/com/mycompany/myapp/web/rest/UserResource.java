@@ -1,11 +1,8 @@
 package com.mycompany.myapp.web.rest;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
-
 import com.mycompany.myapp.config.Constants;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.UserRepository;
-import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.service.MailService;
 import com.mycompany.myapp.service.UserService;
@@ -20,8 +17,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.Collections;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,18 +73,10 @@ public class UserResource {
 
     private final MailService mailService;
 
-    private final UserSearchRepository userSearchRepository;
-
-    public UserResource(
-        UserService userService,
-        UserRepository userRepository,
-        MailService mailService,
-        UserSearchRepository userSearchRepository
-    ) {
+    public UserResource(UserService userService, UserRepository userRepository, MailService mailService) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.mailService = mailService;
-        this.userSearchRepository = userSearchRepository;
     }
 
     /**
@@ -121,9 +108,7 @@ public class UserResource {
             mailService.sendCreationEmail(newUser);
             return ResponseEntity
                 .created(new URI("/api/users/" + newUser.getLogin()))
-                .headers(
-                    HeaderUtil.createAlert(applicationName, "A user is created with identifier " + newUser.getLogin(), newUser.getLogin())
-                )
+                .headers(HeaderUtil.createAlert(applicationName, "userManagement.created", newUser.getLogin()))
                 .body(newUser);
         }
     }
@@ -152,7 +137,7 @@ public class UserResource {
 
         return ResponseUtil.wrapOrNotFound(
             updatedUser,
-            HeaderUtil.createAlert(applicationName, "A user is updated with identifier " + userDTO.getLogin(), userDTO.getLogin())
+            HeaderUtil.createAlert(applicationName, "userManagement.updated", userDTO.getLogin())
         );
     }
 
@@ -210,20 +195,6 @@ public class UserResource {
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
-        return ResponseEntity
-            .noContent()
-            .headers(HeaderUtil.createAlert(applicationName, "A user is deleted with identifier " + login, login))
-            .build();
-    }
-
-    /**
-     * {@code SEARCH /_search/users/:query} : search for the User corresponding to the query.
-     *
-     * @param query the query to search.
-     * @return the result of the search.
-     */
-    @GetMapping("/_search/users/{query}")
-    public List<User> search(@PathVariable String query) {
-        return StreamSupport.stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false).collect(Collectors.toList());
+        return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName, "userManagement.deleted", login)).build();
     }
 }
