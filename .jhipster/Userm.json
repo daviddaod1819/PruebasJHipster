@@ -1,0 +1,25 @@
+{
+  "name": "Userm",
+  "fields": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "userInfo",
+      "otherEntityRelationshipName": "user",
+      "relationshipName": "userInfo",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20201117093603",
+  "entityTableName": "userm",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["PruebasJHipster"]
+}

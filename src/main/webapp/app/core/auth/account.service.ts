@@ -16,10 +16,6 @@ export class AccountService {
 
   constructor(private http: HttpClient, private stateStorageService: StateStorageService, private router: Router) {}
 
-  save(account: Account): Observable<{}> {
-    return this.http.post(SERVER_API_URL + 'api/account', account);
-  }
-
   authenticate(identity: Account | null): void {
     this.userIdentity = identity;
     this.authenticationState.next(this.userIdentity);
