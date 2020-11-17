@@ -46,6 +46,10 @@ public class UserInfo implements Serializable {
     @OneToMany(mappedBy = "userInfo")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Space> spaces = new HashSet<>();
+    
+    @OneToOne(mappedBy = "userInfo")
+    @JsonIgnore
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -144,6 +148,19 @@ public class UserInfo implements Serializable {
 
     public void setSpaces(Set<Space> spaces) {
         this.spaces = spaces;
+    }
+    
+    public User getUser() {
+        return user;
+    }
+
+    public UserInfo user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
