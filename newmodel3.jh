@@ -1,0 +1,56 @@
+
+application {
+  config {
+    applicationType monolith,
+    baseName PruebasJHipster,
+    serverPort 8080,
+    serviceDiscoveryType false,
+    authenticationType jwt,
+    cacheProvider ehcache,
+    enableHibernateCache true,
+    websocket false,
+    databaseType sql,
+    devDatabaseType h2Disk,
+    prodDatabaseType mysql,
+    searchEngine elasticsearch,
+    enableSwaggerCodegen false,
+    messageBroker false,
+    buildTool maven,
+    useSass true,
+    clientPackageManager npm,
+    testFrameworks [],
+    enableTranslation false,
+    nativeLanguage en,
+    languages [en],
+    clientFramework angularX,
+    jhiPrefix jhi
+  }
+  entities *
+}
+
+entity UserInfo {
+sex Boolean
+birthDate Instant required
+country String minlength(1) maxlength(50)
+town String minlength(1) maxlength(50)
+postCode String minlength(5) maxlength(5)
+}
+
+entity Space {
+rooms Integer
+meters Integer
+price Integer
+details String
+}
+
+relationship OneToMany {
+UserInfo{spaces} to Space{userInfo}
+}
+
+service all with serviceImpl
+paginate all with pagination
+dto all with mapstruct
+filter all
+
+
+    
