@@ -149,6 +149,19 @@ public class UserInfo implements Serializable {
     public void setSpaces(Set<Space> spaces) {
         this.spaces = spaces;
     }
+    
+    public Userm getUser() {
+        return user;
+    }
+
+    public UserInfo user(Userm userm) {
+        this.user = userm;
+        return this;
+    }
+
+    public void setUser(Userm userm) {
+        this.user = userm;
+    }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
