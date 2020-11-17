@@ -46,6 +46,10 @@ public class UserInfo implements Serializable {
     @OneToMany(mappedBy = "userInfo")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Space> spaces = new HashSet<>();
+    
+    @OneToOne(mappedBy = "userInfo")
+    @JsonIgnore
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
