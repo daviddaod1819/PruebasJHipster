@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="space">
+            <h2><span>Space</span> {{ space.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Rooms</span></dt>
+                <dd>
+                    <span>{{ space.rooms }}</span>
+                </dd>
+                <dt><span>Meters</span></dt>
+                <dd>
+                    <span>{{ space.meters }}</span>
+                </dd>
+                <dt><span>Price</span></dt>
+                <dd>
+                    <span>{{ space.price }}</span>
+                </dd>
+                <dt><span>Details</span></dt>
+                <dd>
+                    <span>{{ space.details }}</span>
+                </dd>
+                <dt><span>User Info</span></dt>
+                <dd>
+                    <div *ngIf="space.userInfoId">
+                        <a [routerLink]="['/user-info', space.userInfoId, 'view']">{{ space.userInfoId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/space', space.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
